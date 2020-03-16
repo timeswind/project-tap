@@ -30,8 +30,9 @@ const authStrategy = keystone.createAuthStrategy({
 module.exports = {
   keystone,
   apps: [
-    new GraphQLApp(),
+    new GraphQLApp({apiPath: '/api', graphiqlPath: '/graphql'}),
     new AdminUIApp({
+      apiPath: '/api', graphiqlPath: '/graphql',
       enableDefaultRoute: true,
       authStrategy,
       isAccessAllowed: ({ authentication: { item: user, listKey: list } }) => !!user && !!user.isAdmin,
